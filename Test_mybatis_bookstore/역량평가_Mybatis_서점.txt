@@ -1,0 +1,11 @@
+[역량평가_Mybatis_서점]
+
+* 평가 시점 - Java, Oracle, Mybatis 과정 후 실시
+* 구조 - UI, DAO, VO로 구성
+* 사용 기술 - Java Application, Oracle, Mybatis
+
+* 기능
+- 텍스트 모드에서 메뉴 번호 선택하여 사용
+- 키보드로부터 도서 정보 입력받아 Oracle DB에 저장
+- 기존 정보의 검색, 수정, 삭제 등
+

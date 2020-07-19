@@ -1,0 +1,5 @@
+/db.properties
+/mybatis-config.xml
+/person.sql
+/personMapper.xml
+/test/

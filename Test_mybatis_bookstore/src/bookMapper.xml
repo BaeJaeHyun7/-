@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 도서 정보 처리 SQL -->
+<mapper namespace="book.dao.BookMapper">
+
+<!-- 도서 정보 저장 -->
+<insert id="insertBook" parameterType="book">
+insert into book (
+	bnum
+	, title
+	, author
+	, publisher
+	, price
+)
+values (
+	bookseq.nextval
+	, #{title}
+	, #{author}
+	, #{publisher}
+	, #{price}
+)
+</insert>
+
+<!-- 전체 도서 목록 읽기 -->
+<select id="listAll" resultType="book">
+select 
+	bnum
+	, title
+	, author
+	, publisher
+	, (to_char(inputdate, 'yy/mm/dd')) inputdate
+	, price
+from 
+	book
+
+</select>
+
+<!-- 번호로 도서정보 찾기 -->
+<select id="getBook" parameterType="int" resultType="book">
+select * from book where bnum = #{bnum}
+</select>
+
+<!-- 번호로 삭제하기 -->
+<delete id="deleteBook" parameterType="int">
+delete from book where bnum = #{bnum}
+</delete>
+
+<!-- 번호로 제목, 저자, 출판사, 가격 수정하기 -->
+<update id="updateBook" parameterType="book">
+update book
+set 
+	title = #{title}
+	, author = #{author}
+	, publisher = #{publisher}
+	, price = #{price}
+where 
+	bnum = #{bnum}
+</update>
+
+<!-- 검색하기 -->
+<select id="searchBook" parameterType="string" resultType="book">
+select 
+	bnum
+	, title
+	, author
+	, publisher
+	, (to_char(inputdate, 'yy/mm/dd')) inputdate
+	, price
+from 
+	book 
+where
+	upper(title) like '%' || upper(#{text}) || '%'
+order by
+	title desc
+</select> 
+
+</mapper>
